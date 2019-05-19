@@ -5,7 +5,7 @@ require("dotenv").config();
 const keys = require("./keys.js");
 const axios = require("axios");
 const inquirer = require("inquirer");
-var moment = require('moment');
+const moment = require('moment');
 //const bandsintown = require("bandsintown")("codingbootcamp");
 //var spotify = new Spotify(keys.spotify);
 
@@ -59,8 +59,8 @@ inquirer.prompt([{
             console.log(selectedSubject);
             axios.get("http://www.omdbapi.com/?apikey=trilogy&t=" + selectedSubject).then(response => {
                     console.log("------------------")
-                    console.log("Title: " + response.data.Title, )
-                    console.log("Realeased: " + response.data.Released)
+                    console.log("Title: " + response.data.Title)
+                    console.log("Released: " + moment(response.data.Released, "DD MMM YYYY").format("MM/DD/YYYY"))
                     console.log("IMDB Rating: " + response.data.Ratings[0].Value)
                     console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value)
                     console.log("Production Location: " + response.data.Country)
