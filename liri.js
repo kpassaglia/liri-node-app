@@ -5,8 +5,8 @@ require("dotenv").config();
 const keys = require("./keys.js");
 const axios = require("axios");
 const inquirer = require("inquirer");
-const bandsintown = require("bandsintown")("codingbootcamp");
-
+var moment = require('moment');
+//const bandsintown = require("bandsintown")("codingbootcamp");
 //var spotify = new Spotify(keys.spotify);
 
 inquirer.prompt([{
@@ -23,29 +23,27 @@ inquirer.prompt([{
     let selectedCommand = answers.command
     let selectedSubject = answers.subject
     console.log("-----------------------------------")
-    console.log(selectedCommand+":");
+    console.log(selectedCommand + ":");
     switch (selectedCommand) {
         case "Find a band's upcoming shows":
-            selectedCommand = "concert-this"
             console.log(selectedSubject)
             axios.get("https://rest.bandsintown.com/artists/" + selectedSubject + "/events?app_id=codingbootcamp").then(response => {
                     for (var i = 0; i < 3; i++) {
                         console.log("------------------")
                         console.log("Venue: " + response.data[i].venue.name)
                         console.log("City: " + response.data[i].venue.city)
-                        // console.log("Time: " + moment(response.data[i].datetime).format("MM/DD/YYYY"))
-                        console.log("Time: " + response.data[i].datetime)
+                        console.log("Time: " + moment(response.data[i].datetime).format("MM/DD/YYYY"))
+                        console.log("------------------")
                     }
                 })
                 .catch((error) => {
                     if (error.response) {
                         console.log("We cant find anything for your search")
                     } else if (error.request) {
-                        console.log("We cant find anything for your search")
+                        console.log("Something went wrong with your request, please try again")
                     } else {
-                        console.log("We cant find anything for your search")
+                        console.log("I dont know...this is a wierd one")
                     }
-                    console.log("We cant find anything for your search")
                 })
             break;
         case "Find a song's details":
@@ -53,9 +51,33 @@ inquirer.prompt([{
             console.log(selectedCommand + " " + selectedSubject)
             break;
         case "Find a movie's details":
-            selectedCommand = "movie-this"
-            // axios.get("http://www.omdbapi.com/?t=avatar")
-            console.log(selectedCommand + " " + selectedSubject)
+            if (selectedSubject = " ") {
+                selectedSubject = "Mr. Nobody"
+            } else {
+                return
+            }
+            console.log(selectedSubject);
+            axios.get("http://www.omdbapi.com/?apikey=trilogy&t=" + selectedSubject).then(response => {
+                    console.log("------------------")
+                    console.log("Title: " + response.data.Title, )
+                    console.log("Realeased: " + response.data.Released)
+                    console.log("IMDB Rating: " + response.data.Ratings[0].Value)
+                    console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value)
+                    console.log("Production Location: " + response.data.Country)
+                    console.log("Language: " + response.data.Language)
+                    console.log("Plot: " + response.data.Plot)
+                    console.log("Actors: " + response.data.Actors)
+                    console.log("------------------")
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        console.log("We cant find anything for your search")
+                    } else if (error.request) {
+                        console.log("Something went wrong with your request, please try again")
+                    } else {
+                        console.log("I dont know...this is a wierd one")
+                    }
+                });
             break;
         case "Find out something new":
             selectedCommand = "do-what-it-says"
