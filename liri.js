@@ -51,11 +51,9 @@ inquirer.prompt([{
             console.log(selectedCommand + " " + selectedSubject)
             break;
         case "Find a movie's details":
-            if (selectedSubject = " ") {
+            if (selectedSubject === "") {
                 selectedSubject = "Mr. Nobody"
-            } else {
-                return
-            }
+            } 
             console.log(selectedSubject);
             axios.get("http://www.omdbapi.com/?apikey=trilogy&t=" + selectedSubject).then(response => {
                     console.log("------------------")

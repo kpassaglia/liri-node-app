@@ -6,8 +6,11 @@ Used Inquirer prompt instead of process.argv commands to ensure there are not sy
 Also, wanted to increase the user expereince a bit so I switched the commands to the following:
 
 concert-this ==> Find a band's upcoming shows
+
 spotify-this-song  ==>  Find a song's details
+
 movie-this / Find  ==>  movie's details
+
 do-what-it-says  ==>  Find out something new
 
 Inquirer prompt in console
