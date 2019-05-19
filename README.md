@@ -19,12 +19,19 @@ Inquirer prompt in console
 Bandsintown API via axios response in console
 ![Screenshot](bandsintown.png)
 
-Spotify API re
-![Screenshot](#.png)
+Spotify API response (found out about you)
+![Screenshot](spotifyginblossoms.png)
+
+Spotify API response (the sign)
+![Screenshot](spotifyempty.png)
 
 OMDB API via axios response in console (avatar)
 ![Screenshot](omdbavatar.png)
 
 OMDB API via axios response in console (no Input)
 ![Screenshot](omdbempty.png)
+
+Random.txt vis fs response in console
+![Screenshot](random1.png)
+
 
